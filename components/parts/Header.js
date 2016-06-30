@@ -8,14 +8,20 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="row">
-        <div className="col-md-8">
-          <h1>{this.props.title}</h1>
+      <nav className="navbar navbar-default navbar-fixed-top">
+        <div className="container-fluid">
+          <div className="navbar-header">
+          <div className="navbar-brand">
+          {this.props.title}
+          </div>
+            <div className="navbar-brand pull-right">
+              <span className="badge">
+                {this.props.connectionCount}
+              </span>
+            </div>
+          </div>
         </div>
-        <div className="col-md-4">
-          <h1>{this.props.connectionCount}</h1>
-        </div>
-      </header>
+      </nav>
     );
   }
 

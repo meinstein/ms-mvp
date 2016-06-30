@@ -20,14 +20,14 @@ export default class App extends React.Component {
   }
 
   disconnect() {
-    
+
   }
 
   render() {
 
     return (
       <div>
-        <Header title="WikiLinks" />
+        <Header title="Wiki-Links" />
       </div>
     )
   }
