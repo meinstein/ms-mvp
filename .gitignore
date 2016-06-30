@@ -1,6 +1,8 @@
+.DS_Store
+
 ## NPM ##
 node_modules/
-npm-debug.log
++npm-debug.log
 
 ## PUBLIC BUNDLE ##
 public/bundle.js
