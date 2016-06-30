@@ -1,5 +1,6 @@
 ## NPM ##
 node_modules/
+npm-debug.log
 
 ## PUBLIC BUNDLE ##
 public/bundle.js

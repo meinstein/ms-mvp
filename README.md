@@ -1,0 +1,3 @@
+#MVP
+
+npm run start
