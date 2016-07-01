@@ -11,7 +11,7 @@ export default class Table extends React.Component {
 
   formatTableData() {
       return this.props.entries.map((entry, i) => {
-          return <TableEntries key={i} entry={entry} />
+          return <TableEntries key={i} number={i} entry={entry} />
       })
   }
 
@@ -24,10 +24,11 @@ export default class Table extends React.Component {
         <table className="table table-hover">
           <thead>
             <tr>
+              <th>#</th>
               <th>Name</th>
-              <th>Page</th>
-              <th>Date</th>
-              <th>Count</th>
+              <th>Article</th>
+              <th>Date Submitted</th>
+              <th>Link Count</th>
             </tr>
           </thead>
           <tbody>

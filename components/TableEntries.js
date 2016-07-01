@@ -6,7 +6,8 @@ export default class TableEntries extends React.Component {
 
     return (
       <tr>
-        <th scope="row">{this.props.entry.name}</th>
+        <th scope="row">{this.props.number + 1}</th>
+        <td>{this.props.entry.name}</td>
         <td>{this.props.entry.page}</td>
         <td>{this.props.entry.date}</td>
         <td>{this.props.entry.count}</td>

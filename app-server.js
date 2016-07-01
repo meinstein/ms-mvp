@@ -22,6 +22,10 @@ app.get('/api/entries', function (req, res) {
   res.json( {results: db.data} )
 });
 
+app.post('/api/entries', function (req, res) {
+  console.log(req.body)
+});
+
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function(){

@@ -13,7 +13,9 @@ export default class App extends React.Component {
 
     this.state = {
       connectionCount: null,
-      entries: []
+      entries: [],
+      name: null,
+      article: null
     }
 
   }
@@ -23,8 +25,22 @@ export default class App extends React.Component {
     this.socket.on('connectionCount', this.getConnectionCount.bind(this))
   }
 
+  getConnectionCount(socketCount) {
+    this.setState({
+      connectionCount: socketCount.socketCount
+    })
+  }
+
   componentDidMount() {
     this.getEntries();
+  }
+
+  handleNewArticle(formData) {
+    console.log(formData)
+    this.setState({
+      name: formData.name,
+      article: formData.article
+    })
   }
 
   getEntries() {
@@ -39,18 +55,26 @@ export default class App extends React.Component {
     });
   }
 
-  getConnectionCount(socketCount) {
-    this.setState({
-      connectionCount: socketCount.socketCount
-    })
+  postEntry() {
+    axios.post('/api/entries', {
+        name: this.state.name,
+        article: this.state.article
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
   }
+
 
   render() {
 
     return (
       <div>
         <Nav connectionCount={this.state.connectionCount} title="Wiki-Links" />
-        <LinkInput />
+        <LinkInput handleNewArticle={this.handleNewArticle.bind(this)}/>
         <Table entries={this.state.entries} />
       </div>
     )
