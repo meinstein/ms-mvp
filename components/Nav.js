@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Header extends React.Component {
+class Nav extends React.Component {
 
   constructor(props) {
     super(props);
@@ -11,14 +11,12 @@ class Header extends React.Component {
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
           <div className="navbar-header">
-          <div className="navbar-brand">
-          {this.props.title}
-          </div>
-            <div className="navbar-brand pull-right">
-              <span className="badge">
-                {this.props.connectionCount}
-              </span>
+            <div className="navbar-brand">
+            {this.props.title}
             </div>
+          </div>
+          <div className="navbar-brand pull-right">
+            <span className="badge">{this.props.connectionCount}</span>
           </div>
         </div>
       </nav>
@@ -28,16 +26,14 @@ class Header extends React.Component {
 }
 
 
-Header.propTypes = {
+Nav.propTypes = {
   title: React.PropTypes.string,
   connectionCount: React.PropTypes.number
 }
 
-Header.defaultProps = {
+Nav.defaultProps = {
  title: 'WikiLinks',
  connectionCount: 0
-
-
 };
 
-export default Header;
+export default Nav;

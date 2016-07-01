@@ -1,3 +1,15 @@
 body {
   padding-top: 70px;
 }
+
+.btn {
+  margin: 10px;
+}
+
+.row.link-input {
+  text-align: center;
+}
+
+table {
+  margin-top: 20px;
+}
