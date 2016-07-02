@@ -11,6 +11,7 @@ export default class TableEntries extends React.Component {
         <td>{this.props.entry.page}</td>
         <td>{this.props.entry.date}</td>
         <td>{this.props.entry.count}</td>
+        <td>{this.props.entry.external}</td>
       </tr>
      );
   }

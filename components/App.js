@@ -14,15 +14,17 @@ export default class App extends React.Component {
     this.state = {
       connectionCount: null,
       entries: [],
-      name: null,
-      article: null
+      validateLink: true,
+      linkCount: null,
+      externalLinkCount: 0,
+      articleTitle: null
     }
-
   }
 
   componentWillMount() {
     this.socket = io('http://localhost:3000');
     this.socket.on('connectionCount', this.getConnectionCount.bind(this))
+    this.socket.on('dbUpdate', this.getEntries.bind(this))
   }
 
   getConnectionCount(socketCount) {
@@ -33,14 +35,6 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.getEntries();
-  }
-
-  handleNewArticle(formData) {
-    console.log(formData)
-    this.setState({
-      name: formData.name,
-      article: formData.article
-    })
   }
 
   getEntries() {
@@ -55,17 +49,29 @@ export default class App extends React.Component {
     });
   }
 
-  postEntry() {
+  postEntry(formData) {
     axios.post('/api/entries', {
-        name: this.state.name,
-        article: this.state.article
+        name: formData.name,
+        article: formData.article
       })
       .then(function (response) {
-        console.log(response);
-      })
+        console.log(response)
+        this.setState({
+          validateLink: true,
+          linkCount: response.data.linkCount,
+          externalLinkCount: response.data.externalLinkCount,
+          articleTitle: response.data.title
+        })
+        console.log(response.data.linkCount)
+      }.bind(this))
       .catch(function (response) {
-        console.log(response);
-      });
+        this.setState({
+          validateLink: false,
+          linkCount: null,
+          externalLinkCount: 0,
+          articleTitle: null
+        })
+      }.bind(this));
   }
 
 
@@ -74,7 +80,11 @@ export default class App extends React.Component {
     return (
       <div>
         <Nav connectionCount={this.state.connectionCount} title="Wiki-Links" />
-        <LinkInput handleNewArticle={this.handleNewArticle.bind(this)}/>
+        <LinkInput articleTitle={this.state.articleTitle}
+                   linkCount={this.state.linkCount}
+                   externalLinkCount={this.state.externalLinkCount}
+                   validateLink={this.state.validateLink}
+                   handleNewArticle={this.postEntry.bind(this)} />
         <Table entries={this.state.entries} />
       </div>
     )

@@ -6,7 +6,6 @@ export default class Table extends React.Component {
 
   constructor(props) {
     super(props);
-
   }
 
   formatTableData() {
@@ -21,14 +20,16 @@ export default class Table extends React.Component {
 
     return (
       <div className="container">
+        <h4>Top 50</h4>
         <table className="table table-hover">
           <thead>
             <tr>
               <th>#</th>
               <th>Name</th>
               <th>Article</th>
-              <th>Date Submitted</th>
-              <th>Link Count</th>
+              <th>Examined On</th>
+              <th>Wiki Links</th>
+              <th>External Links</th>
             </tr>
           </thead>
           <tbody>

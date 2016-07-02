@@ -3,7 +3,7 @@ body {
 }
 
 .btn {
-  margin: 10px;
+  margin: 5px;
 }
 
 .row.link-input {
@@ -12,4 +12,12 @@ body {
 
 table {
   margin-top: 20px;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+.badge {
+  background-color: #337ab7;
 }

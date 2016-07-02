@@ -7,49 +7,82 @@ export default class LinkInput extends React.Component {
     super(props);
 
     this.state = {
-      linkPrefix: 'http://wikipedia.org/',
-      name: null,
-      article: null
+      linkPrefix: 'http://wikipedia.org/wiki/',
+      name: '',
+      article: ''
     }
+
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleLinkChange = this.handleLinkChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.handleNewArticle({
-      name: ReactDOM.findDOMNode(this.refs.name).value,
-      article: ReactDOM.findDOMNode(this.refs.article).value
-    })
+  handleSubmit(event) {
+
+    event.preventDefault();
+
+    var formData = {
+      name: this.state.name,
+      article: this.state.article
+    }
+
+    this.props.handleNewArticle(formData);
+
+  }
+
+  handleNameChange(event) {
+    this.setState({name: event.target.value})
+  }
+
+  handleLinkChange(event) {
+    this.setState({article: event.target.value})
   }
 
   render() {
+
+    let errorMsg = this.props.validateLink ? 'hide' : 'show';
+    let errorLabel = `${errorMsg} control-label`;
+
+    let errorHighlight = this.props.validateLink ? '' : 'has-error';
+    let errorInput = `${errorHighlight} form-group`;
+
+    let successMsg = this.props.linkCount ? 'show' : 'hide';
+    let successLabel = `${successMsg} control-label text-primary`;
+
     return (
       <div className="container">
         <div className="row link-input">
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <div className="form-group">
               <input
                 type="text"
                 ref="name"
+                onChange={this.handleNameChange}
                 className="form-control"
                 placeholder="Enter your name"
                 required />
             </div>
-            <div className="form-group">
-              <div className="input-group">
-                <div className="input-group-addon">{this.state.linkPrefix}</div>
+            <div className={errorInput}>
+              <label ref="error" className={errorLabel}>
+                     {this.props.articleTitle} does not exist.
+              </label>
+              <label ref="success" className={successLabel}>
+                     {this.props.articleTitle} contains {this.props.linkCount} wiki links
+                     and {this.props.externalLinkCount} external links.
+              </label>
                   <input
                     type="text"
-                    ref="article"
+                    ref="link"
+                    onChange={this.handleLinkChange}
                     className="form-control"
-                    id="exampleInputAmount"
-                    placeholder="Enter an article"
+                    placeholder="Enter an article title"
                     required />
-                </div>
               </div>
             <button
-              onclick={this.handleSubmit}
-              type="submit" className="btn btn-primary">Count Links
+              type="submit"
+              className="btn btn-primary" >
+              Count Links
             </button>
           </form>
         </div>

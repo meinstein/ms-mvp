@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "webpack",
-    "start": "node app-server.js"
+    "bundle": "webpack -w",
+    "serve": "nodemon app-server.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +16,9 @@
     "babel-preset-stage-0": "^6.5.0",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.6",
+    "dateformat": "^1.0.12",
     "express": "^4.14.0",
+    "node-wikipedia": "0.0.2",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "socket.io": "^1.4.8",

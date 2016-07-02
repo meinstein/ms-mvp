@@ -6,6 +6,10 @@ install
 
 `npm i`
 
-and then run
+run nodemon server
 
-`npm run start`
+`npm run serve`
+
+run webpack -w
+
+`npm run bundle`

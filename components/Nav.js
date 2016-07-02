@@ -9,7 +9,7 @@ class Nav extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
-        <div className="container-fluid">
+        <div className="container">
           <div className="navbar-header">
             <div className="navbar-brand">
             {this.props.title}
