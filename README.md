@@ -1,6 +1,10 @@
-##MVP Project
+# Wiki-Links
 
-Scour Wikipedia and submit the articles that you think contain the greatest number of links.
+A game that encourages users to scour Wikipedia and submit articles with the greatest number of links.
+
+Live version is [here](https://wiki-links.herokuapp.com/)
+
+## To run locally
 
 install
 
